@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProgramSettingsManager\ProgramSettingsManager.csproj" />
+    <ProjectReference Include="..\ProgramSettingsManager\Abraham.ProgramSettingsManager.csproj" />
   </ItemGroup>
 
   <ItemGroup>
