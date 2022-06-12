@@ -9,7 +9,7 @@
     it allows you to comment out a block */
 
 {
-	Option1                         : "this_is_from_my_appsettings.hjson_file_Option1",
-	Option2                         : "this_is_from_my_appsettings.hjson_file_Option2",
-	Option3                         : "this_is_from_my_appsettings.hjson_file_Option3",
+    Option1                         : "this_is_from_my_appsettings.hjson_file_Option1",
+    Option2                         : "this_is_from_my_appsettings.hjson_file_Option2",
+    Option3                         : "this_is_from_my_appsettings.hjson_file_Option3",
 }
