@@ -8,7 +8,23 @@
     <Title>Abraham.ProgramSettingsManager</Title>
     <Description>Enables you to use an appsettings.hjson file for configuration of your app.</Description>
     <Copyright>Oliver Abraham</Copyright>
+    <PackageProjectUrl>https://github.com/OliverAbraham/ProgramSettingsManager</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Hjson" Version="3.0.0" />
