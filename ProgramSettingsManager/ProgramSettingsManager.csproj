@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Abraham.ProgramSettingsManager</Title>
+    <Description>Enables you to use an appsettings.hjson file for configuration of your app.</Description>
+    <Copyright>Oliver Abraham</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hjson" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+</Project>
