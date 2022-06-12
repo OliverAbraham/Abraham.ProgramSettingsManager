@@ -13,6 +13,7 @@ Install the Nuget package "Abraham.ProgramSettingsManager" into you application 
 
 Add the following code:
 
+```c#
     private static ProgramSettingsManager<Configuration> _myConfiguration;
 
     static void Main(string[] args)
@@ -30,20 +31,42 @@ Add the following code:
 	    public string Option2 { get; set; }
 	    public string Option3 { get; set; }
     }
+```
 
 Add a file named "appsettings.hjson" to your project, make sure it's 
 copied to the output directory (bin directory) of your app, with this content:
 
+```json
     {
 	    Option1: "my value 1",
 	    Option2: "my value 2",
 	    Option3: "my value 3",
     }
+```
 
 That's it!
 
 For more options, please refer to my Demo application in the github repository (see below).
 The Demo and the nuget source code is well documented.
+
+
+
+## HOW TO INSTALL A NUGET PACKAGE
+This is very simple:
+- Start Visual Studio (with NuGet installed) 
+- Right-click on your project's References and choose "Manage NuGet Packages..."
+- Choose Online category from the left
+- Enter the name of the nuget package to the top right search and hit enter
+- Choose your package from search results and hit install
+- Done!
+
+
+or from NuGet Command-Line:
+
+    Install-Package Abraham.ProgramSettingsManager
+
+
+
 
 
 ## AUTHOR
