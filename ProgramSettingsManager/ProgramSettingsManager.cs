@@ -40,8 +40,8 @@ public class ProgramSettingsManager<T> where T : class
 
     #region ------------- Init ----------------------------------------------------------------
     /// <summary>
-    /// Create a static instance (singleton) of your program configuration.
-    /// You can use hjson extension so use the Hjson format, otherwise json will be used.
+    /// Create an instance of your program configuration.
+    /// You can use hjson extension to use the HJSON format, otherwise JSON will be used.
     /// </summary>
     public ProgramSettingsManager()
     {
