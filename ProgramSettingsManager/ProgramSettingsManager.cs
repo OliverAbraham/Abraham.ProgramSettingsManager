@@ -25,33 +25,33 @@ namespace Abraham.ProgramSettingsManager;
 /// 
 public class ProgramSettingsManager<T> where T : class
 {
-	#region ------------- Properties ----------------------------------------------------------
-	public string ConfigFilename        { get; set; } = "appsettings.hjson";
-	public string ConfigPathAndFilename { get; set; }
-	public T	  Data                  { get; set; }
+    #region ------------- Properties ----------------------------------------------------------
+    public string ConfigFilename        { get; set; } = "appsettings.hjson";
+    public string ConfigPathAndFilename { get; set; }
+    public T	  Data                  { get; set; }
     #endregion
 
 
 
     #region ------------- Fields --------------------------------------------------------------
-	#endregion
+    #endregion
 
 
 
-	#region ------------- Init ----------------------------------------------------------------
+    #region ------------- Init ----------------------------------------------------------------
     /// <summary>
     /// Create a static instance (singleton) of your program configuration.
     /// You can use hjson extension so use the Hjson format, otherwise json will be used.
     /// </summary>
     public ProgramSettingsManager()
     {
-		ConfigPathAndFilename = Path.Combine(Directory.GetCurrentDirectory(), ConfigFilename);
+        ConfigPathAndFilename = Path.Combine(Directory.GetCurrentDirectory(), ConfigFilename);
     }
-	#endregion
+    #endregion
 
 
 
-	#region ------------- Methods -------------------------------------------------------------
+    #region ------------- Methods -------------------------------------------------------------
     /// <summary>
     /// Call this method to set a certain full path and filename, for example from command line parameters (args[0])
     /// </summary>
@@ -100,20 +100,20 @@ public class ProgramSettingsManager<T> where T : class
         return this;
     }
 
-	public ProgramSettingsManager<T> Load()
-	{
-		try
-		{
-			Data = Load(ConfigPathAndFilename);
-			if (Data is null)
-				throw new Exception($"Unable to read the configuration file '{ConfigPathAndFilename}'");
+    public ProgramSettingsManager<T> Load()
+    {
+        try
+        {
+            Data = Load(ConfigPathAndFilename);
+            if (Data is null)
+                throw new Exception($"Unable to read the configuration file '{ConfigPathAndFilename}'");
             return this;
-		}
-		catch (Exception ex)
-		{
-			throw new Exception($"Unable to read the configuration file '{ConfigPathAndFilename}'.More Info: {ex}");
-		}
-	}
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Unable to read the configuration file '{ConfigPathAndFilename}'.More Info: {ex}");
+        }
+    }
 
     /// <summary>
     /// Call this method to validate every property of your data is filled
@@ -125,11 +125,11 @@ public class ProgramSettingsManager<T> where T : class
     /// (string not null or whitespace, numeric data types not zero)
     /// </returns>
     public ProgramSettingsManager<T> Validate()
-	{
+    {
         if (!IsValid(Data))
-			throw new Exception($"There's an error in your configuration file '{ConfigPathAndFilename}'. Please check this file.");
+            throw new Exception($"There's an error in your configuration file '{ConfigPathAndFilename}'. Please check this file.");
         return this;
-	}
+    }
 
     /// <summary>
     /// Call this method to validate every property of your data is filled
@@ -141,11 +141,11 @@ public class ProgramSettingsManager<T> where T : class
     /// (string not null or whitespace, numeric data types not zero)
     /// </returns>
     public bool IsValid(T data)
-	{
+    {
         var properties = DictionaryFromType(data);
 
         foreach (var property in properties)
-		{
+        {
             if (property.Value is string value1 && string.IsNullOrWhiteSpace(value1))
                 return false;
 
@@ -157,10 +157,10 @@ public class ProgramSettingsManager<T> where T : class
 
             if (property.Value is decimal value4 && value4 == 0)
                 return false;
-		}
+        }
 
         return true;
-	}
+    }
 
     /// <summary>
     /// Call this method to load a file into memory
@@ -197,31 +197,31 @@ public class ProgramSettingsManager<T> where T : class
     /// Call this method to print out all configuration settings to the console (or your preferred logger)
     /// </summary>
     public ProgramSettingsManager<T> PrintConfiguration()
-	{
+    {
         PrintConfiguration(Console.WriteLine);
         return this;
-	}
+    }
 
     /// <summary>
     /// Call this method to print out all configuration settings to the console (or your preferred logger)
     /// </summary>
     public ProgramSettingsManager<T> PrintConfiguration(Action<string> logger)
-	{
+    {
         logger("Configuration:");
 
         var properties = DictionaryFromType(Data);
         foreach (var property in properties)
-		{
+        {
             logger($"{property.Key,-50}: {property.Value}");
-		}
+        }
 
         return this;
-	}
-	#endregion
+    }
+    #endregion
 
 
 
-	#region ------------- Implementation ----------------------------------------------------------
+    #region ------------- Implementation ----------------------------------------------------------
     private static Dictionary<string, object> DictionaryFromType(object atype)
     {
         if (atype == null) 
@@ -238,5 +238,5 @@ public class ProgramSettingsManager<T> where T : class
         }
         return dict;
     }
-	#endregion
+    #endregion
 }
