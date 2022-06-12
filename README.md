@@ -6,6 +6,17 @@ Enables you to use a JSON file for configuration of your app
 (typically appsettings.hjson or appsettings.json).
 
 
+## License
+
+Licensed under Apache licence.
+https://www.apache.org/licenses/LICENSE-2.0
+
+
+## Compatibility
+
+The nuget package was build with DotNET 6.
+
+
 
 ## INSTALLATION
 
