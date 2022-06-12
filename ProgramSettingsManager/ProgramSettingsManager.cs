@@ -14,7 +14,7 @@ namespace Abraham.ProgramSettingsManager;
 /// Oliver Abraham, mail@oliver-abraham.de, https://www.oliver-abraham.de
 /// 
 /// Source code hosted at: 
-/// https://github.com/OliverAbraham/ProgramSettingsManager
+/// https://github.com/OliverAbraham/Abraham.ProgramSettingsManager
 /// 
 /// Nuget Package hosted at: 
 /// https://www.nuget.org/packages/Abraham.ProgramSettingsManager/

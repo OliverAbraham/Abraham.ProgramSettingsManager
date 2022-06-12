@@ -58,7 +58,7 @@ Please feel free to comment and suggest improvements!
 
 The source code is hosted at:
 
-https://github.com/OliverAbraham/ProgramSettingsManager
+https://github.com/OliverAbraham/Abraham.ProgramSettingsManager
 
 The Nuget Package is hosted at: 
 
