@@ -33,7 +33,20 @@ public class ProgramSettingsManager<T> where T : class
 
 
 
-    #region ------------- Fields --------------------------------------------------------------
+    #region ------------- Private types -----------------------------------------------------------
+    private class PropertyData
+    {
+        public string Name { get; set; }
+        public PropertyInfo PropertyInfo { get; set; }
+        public object? Obj { get; set; }
+
+        public PropertyData(string name, PropertyInfo propertyInfo, object? obj)
+        {
+            Name = name;
+            PropertyInfo = propertyInfo;
+            Obj = obj;
+        }
+    }
     #endregion
 
 
@@ -126,8 +139,18 @@ public class ProgramSettingsManager<T> where T : class
     /// </returns>
     public ProgramSettingsManager<T> Validate()
     {
-        if (!IsValid(Data))
-            throw new Exception($"There's an error in your configuration file '{ConfigPathAndFilename}'. Please check this file.");
+        var properties = DictionaryFromType(Data);
+        var t = Data.GetType();
+
+        foreach (var property in properties)
+        {
+            var propertyAttributes = property.Value.PropertyInfo.GetCustomAttributes(typeof(OptionalAttribute));
+            var propertyIsOptional = propertyAttributes.Where(x => x is OptionalAttribute).Any();
+
+            if (!propertyIsOptional && !PropertyHasValue(property))
+                throw new Exception($"There's an error in your configuration file '{ConfigPathAndFilename}'. There's no value for property '{property.Value.Name}'");
+        }
+
         return this;
     }
 
@@ -143,19 +166,14 @@ public class ProgramSettingsManager<T> where T : class
     public bool IsValid(T data)
     {
         var properties = DictionaryFromType(data);
+        var t = data.GetType();
 
         foreach (var property in properties)
         {
-            if (property.Value is string value1 && string.IsNullOrWhiteSpace(value1))
-                return false;
+            var propertyAttributes = property.Value.PropertyInfo.GetCustomAttributes(typeof(OptionalAttribute));
+            var propertyIsOptional = propertyAttributes.Where(x => x is OptionalAttribute).Any();
 
-            if (property.Value is int value2 && value2 == 0)
-                return false;
-
-            if (property.Value is double value3 && value3 == 0)
-                return false;
-
-            if (property.Value is decimal value4 && value4 == 0)
+            if (!propertyIsOptional && !PropertyHasValue(property))
                 return false;
         }
 
@@ -212,7 +230,7 @@ public class ProgramSettingsManager<T> where T : class
         var properties = DictionaryFromType(Data);
         foreach (var property in properties)
         {
-            logger($"{property.Key,-50}: {property.Value}");
+            logger($"{property.Key,-50}: {property.Value.Obj}");
         }
 
         return this;
@@ -222,21 +240,39 @@ public class ProgramSettingsManager<T> where T : class
 
 
     #region ------------- Implementation ----------------------------------------------------------
-    private static Dictionary<string, object> DictionaryFromType(object atype)
+    private static Dictionary<string, PropertyData> DictionaryFromType(object atype)
     {
+        var results = new Dictionary<string, PropertyData>();
         if (atype == null) 
-            return new Dictionary<string, object>();
+            return results;
 
         Type t = atype.GetType();
-        PropertyInfo[] props = t.GetProperties();
-        Dictionary<string, object> dict = new Dictionary<string, object>();
+        PropertyInfo[] properties = t.GetProperties();
             
-        foreach (PropertyInfo prp in props)
+        foreach (var property in properties)
         {
-            object value = prp.GetValue(atype, new object[]{});
-            dict.Add(prp.Name, value);
+            object? value = property.GetValue(atype, new object[]{});
+            var data = new PropertyData(property.Name, property, value);
+            results.Add(property.Name, data);
         }
-        return dict;
+        return results;
     }
-    #endregion
+ 
+    private bool PropertyHasValue(KeyValuePair<string, ProgramSettingsManager<T>.PropertyData> property)
+    {
+        if (property.Value.Obj is string value1 && string.IsNullOrWhiteSpace(value1))
+            return false;
+
+        if (property.Value.Obj is int value2 && value2 == 0)
+            return false;
+
+        if (property.Value.Obj is double value3 && value3 == 0)
+            return false;
+
+        if (property.Value.Obj is decimal value4 && value4 == 0)
+            return false;
+
+        return true;
+    }
+   #endregion
 }

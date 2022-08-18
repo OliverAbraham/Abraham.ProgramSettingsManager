@@ -15,6 +15,7 @@
     <SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
     <PackageIcon>Ciridata.png</PackageIcon>
     <RepositoryUrl>https://github.com/OliverAbraham/Abraham.ProgramSettingsManager</RepositoryUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
