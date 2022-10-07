@@ -69,7 +69,7 @@ relative to a known folder.
 
 ```c#
     _myConfiguration = new ProgramSettingsManager<Configuration>()
-        .UsePathRelativeToSpecialFolder("%APPLICATIONDATA%\AcmeCompany\Appsettings.json")
+        .UsePathRelativeToSpecialFolder(@"%APPLICATIONDATA%\AcmeCompany\Appsettings.json")
         .Load();
 ```
 
@@ -79,6 +79,19 @@ More possibilities are:
 - %COMMONDOCUMENTS%\MyProgram\Appsettings.json
 - %MYDOCUMENTS%\MyProgram\Appsettings.json
 - %TEMP%\MyProgram\Appsettings.json
+
+
+
+## Create a default configuration if the file is missing
+
+You can use method 'CreateIfMissing' before Load to create an empty default instance,
+if the configuration file doesn't exist yet.
+
+```c#
+    _myConfiguration = new ProgramSettingsManager<Configuration>()
+        .CreateIfMissing()
+        .Load();
+```
 
 
 

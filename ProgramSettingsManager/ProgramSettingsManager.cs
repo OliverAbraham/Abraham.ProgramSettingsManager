@@ -23,9 +23,9 @@ namespace Abraham.ProgramSettingsManager;
 /// 
 /// <typeparam name="T">your class containing your data (typically named Configuration)</typeparam>
 /// 
-public class ProgramSettingsManager<T> where T : class
+public class ProgramSettingsManager<T> where T : class,new()
 {
-    #region ------------- Properties ----------------------------------------------------------
+    #region ------------- Properties --------------------------------------------------------------
     public string ConfigFilename        { get; set; } = "appsettings.hjson";
     public string ConfigPathAndFilename { get; set; }
     public T	  Data                  { get; set; }
@@ -47,6 +47,12 @@ public class ProgramSettingsManager<T> where T : class
             Obj = obj;
         }
     }
+    #endregion
+
+
+
+    #region ------------- Fields ------------------------------------------------------------------
+    private bool _createIfMissing = false;
     #endregion
 
 
@@ -136,6 +142,12 @@ public class ProgramSettingsManager<T> where T : class
         return this;
     }
 
+    public ProgramSettingsManager<T> CreateIfMissing()
+    {
+        _createIfMissing = true;
+        return this;
+    }
+
     public ProgramSettingsManager<T> Load()
     {
         try
@@ -209,7 +221,12 @@ public class ProgramSettingsManager<T> where T : class
     public T Load(string filename)
     {
         if (!File.Exists(filename))
-            throw new Exception($"Read error! The file named {filename} does not exist");
+        {
+            if (_createIfMissing)
+                return new T();
+            else
+                throw new Exception($"Read error! The file named {filename} does not exist");
+        }
 
         string jsonString;
         if (Path.GetExtension(filename) == ".hjson")
