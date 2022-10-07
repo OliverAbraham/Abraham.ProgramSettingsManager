@@ -76,6 +76,29 @@ public class ProgramSettingsManager<T> where T : class
     }
 
     /// <summary>
+    /// Call this method to set a certain path and filename, relative to a known folder
+    /// Examples:
+    /// %APPLICATIONDATA%\AcmeCompany\Appsettings.json
+    /// %LOCALAPPLICATIONDATA%\AcmeCompany\Appsettings.json
+    /// %COMMONDOCUMENTS%\MyProgram\Appsettings.json
+    /// %MYDOCUMENTS%\MyProgram\Appsettings.json
+    /// %TEMP%\MyProgram\Appsettings.json
+    /// </summary>
+    public ProgramSettingsManager<T> UsePathRelativeToSpecialFolder(string fullpath)
+    {
+        // you can use some keywords to locate your configuration file relative to a special "known windows folder"
+        ReplaceVariable(ref fullpath, "%APPLICATIONDATA%"     , Environment.SpecialFolder.ApplicationData);
+        ReplaceVariable(ref fullpath, "%LOCALAPPLICATIONDATA%", Environment.SpecialFolder.LocalApplicationData);
+        ReplaceVariable(ref fullpath, "%COMMONDOCUMENTS%"     , Environment.SpecialFolder.CommonDocuments);
+        ReplaceVariable(ref fullpath, "%MYDOCUMENTS%"         , Environment.SpecialFolder.MyDocuments);
+        ReplaceVariable(ref fullpath, "%TEMP%"                , Path.GetTempPath());
+
+        ConfigFilename = Path.GetFileName(fullpath);
+        ConfigPathAndFilename = fullpath;
+        return this;
+    }
+
+    /// <summary>
     /// Call this method to set a certain filename, if you don't want appsettings.hjson
     /// </summary>
     public ProgramSettingsManager<T> UseFilename(string filename)
@@ -274,5 +297,16 @@ public class ProgramSettingsManager<T> where T : class
 
         return true;
     }
-   #endregion
+ 
+    private void ReplaceVariable(ref string path, string keyword, Environment.SpecialFolder folderCode)
+    {
+        ReplaceVariable(ref path, keyword, Environment.GetFolderPath(folderCode));
+    }
+ 
+    private void ReplaceVariable(ref string path, string keyword, string pathToUse)
+    {
+        if (path.Contains(keyword))
+            path = path.Replace(keyword, pathToUse);
+    }
+    #endregion
 }

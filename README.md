@@ -62,6 +62,26 @@ The Demo and the nuget source code is well documented.
 
 
 
+## USING SPECIAL FOLDERS FOR YOUR PROGRAM SETTINGS
+
+You can use method 'UsePathRelativeToSpecialFolder' to set a certain path and filename, 
+relative to a known folder.
+
+```c#
+    _myConfiguration = new ProgramSettingsManager<Configuration>()
+        .UsePathRelativeToSpecialFolder("%APPLICATIONDATA%\AcmeCompany\Appsettings.json")
+        .Load();
+```
+
+More possibilities are:
+- %APPLICATIONDATA%\AcmeCompany\Appsettings.json
+- %LOCALAPPLICATIONDATA%\AcmeCompany\Appsettings.json
+- %COMMONDOCUMENTS%\MyProgram\Appsettings.json
+- %MYDOCUMENTS%\MyProgram\Appsettings.json
+- %TEMP%\MyProgram\Appsettings.json
+
+
+
 ## HOW TO INSTALL A NUGET PACKAGE
 This is very simple:
 - Start Visual Studio (with NuGet installed) 
