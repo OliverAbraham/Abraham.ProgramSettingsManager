@@ -1,5 +1,7 @@
 # Abraham.ProgramSettingsManager
 
+![](https://img.shields.io/github/downloads/oliverabraham/Abraham.ProgramSettingsManager/total) ![](https://img.shields.io/github/license/oliverabraham/Abraham.ProgramSettingsManager) ![](https://img.shields.io/github/languages/count/oliverabraham/Abraham.ProgramSettingsManager) ![GitHub Repo stars](https://img.shields.io/github/stars/oliverabraham/Abraham.ProgramSettingsManager?label=repo%20stars) ![GitHub Repo stars](https://img.shields.io/github/stars/oliverabraham?label=user%20stars)
+
 ## OVERVIEW
 
 Enables you to use a JSON file for configuration of your app
@@ -25,34 +27,34 @@ Install the Nuget package "Abraham.ProgramSettingsManager" into you application 
 Add the following code:
 
 ```c#
-    private static ProgramSettingsManager<Configuration> _myConfiguration;
+private static ProgramSettingsManager<Configuration> _myConfiguration;
 
-    static void Main(string[] args)
-    {
-        // easy version:
-        _myConfiguration = new ProgramSettingsManager<Configuration>().Load();
-        Console.WriteLine($"A value from my appsettings.hjson file: {_myConfiguration.Data.Option1}");
+static void Main(string[] args)
+{
+    // easy version:
+    _myConfiguration = new ProgramSettingsManager<Configuration>().Load();
+    Console.WriteLine($"A value from my appsettings.hjson file: {_myConfiguration.Data.Option1}");
 
-    . . . your code
-    }
+. . . your code
+}
 
-    class Configuration
-    {
-	    public string Option1 { get; set; }
-	    public string Option2 { get; set; }
-	    public string Option3 { get; set; }
-    }
+class Configuration
+{
+    public string Option1 { get; set; }
+    public string Option2 { get; set; }
+    public string Option3 { get; set; }
+}
 ```
 
 Add a file named "appsettings.hjson" to your project, make sure it's 
 copied to the output directory (bin directory) of your app, with this content:
 
 ```json
-    {
-	    Option1: "my value 1",
-	    Option2: "my value 2",
-	    Option3: "my value 3",
-    }
+{
+    Option1: "my value 1",
+    Option2: "my value 2",
+    Option3: "my value 3",
+}
 ```
 
 That's it!
@@ -130,3 +132,16 @@ https://github.com/OliverAbraham/Abraham.ProgramSettingsManager
 The Nuget Package is hosted at: 
 
 https://www.nuget.org/packages/Abraham.ProgramSettingsManager
+
+
+
+## SCREENSHOTS
+
+Main screen of the demo:
+![](Screenshots/screenshot1.jpg)
+
+# MAKE A DONATION !
+If you find this application useful, buy me a coffee!
+I would appreciate a small donation on https://www.buymeacoffee.com/oliverabraham
+
+<a href="https://www.buymeacoffee.com/app/oliverabraham" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>

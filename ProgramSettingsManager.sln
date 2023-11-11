@@ -5,12 +5,19 @@ VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abraham.ProgramSettingsManager", "ProgramSettingsManager\Abraham.ProgramSettingsManager.csproj", "{A7D5BEF1-FC1C-477A-9F4A-740B39FAC152}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Projektmappenelemente", "{4AE6AC99-07EE-4FE0-AF27-8BC7971CF555}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 Solution Items", "3 Solution Items", "{4AE6AC99-07EE-4FE0-AF27-8BC7971CF555}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramSettingsManagerDemo", "ProgramSettingsManagerDemo\ProgramSettingsManagerDemo.csproj", "{EA51DD73-5EB3-499B-9CA6-5F7D535E75CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Nuget package", "1 Nuget package", "{76AE504E-7A46-4C41-B251-CE46B88203FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Demo", "2 Demo", "{A6BAEAC8-A19A-4E4E-AED1-3B7FAC3F4E2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +36,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A7D5BEF1-FC1C-477A-9F4A-740B39FAC152} = {76AE504E-7A46-4C41-B251-CE46B88203FB}
+		{EA51DD73-5EB3-499B-9CA6-5F7D535E75CD} = {A6BAEAC8-A19A-4E4E-AED1-3B7FAC3F4E2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58C1BFA6-4EC1-4F6C-95FD-92FD85F7622F}

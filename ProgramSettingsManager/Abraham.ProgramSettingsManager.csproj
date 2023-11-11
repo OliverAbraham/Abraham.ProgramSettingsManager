@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,14 +8,18 @@
     <Title>Abraham.ProgramSettingsManager</Title>
     <Description>Enables you to use an appsettings.hjson file for configuration of your app.</Description>
     <Copyright>Oliver Abraham</Copyright>
-    <PackageProjectUrl>https://github.com/OliverAbraham/ProgramSettingsManager</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/OliverAbraham/Abraham.ProgramSettingsManager</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>symbols.nupkg</SymbolPackageFormat>
     <PackageIcon>Ciridata.png</PackageIcon>
     <RepositoryUrl>https://github.com/OliverAbraham/Abraham.ProgramSettingsManager</RepositoryUrl>
-    <Version>1.0.2</Version>
+	  <IncludeSymbols>True</IncludeSymbols>
+	  <!-- Include symbol files (*.pdb) in the built .nupkg -->
+	  <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+
+	  <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
