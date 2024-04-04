@@ -109,7 +109,7 @@ public class ProgramSettingsManager<T> where T : class,new()
     /// </summary>
     public ProgramSettingsManager<T> UseFilename(string filename)
     {
-        ConfigFilename = filename;
+        ConfigFilename = ConfigPathAndFilename = filename;
         return this;
     }
 
